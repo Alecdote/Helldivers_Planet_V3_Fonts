@@ -1,5 +1,6 @@
 package com.example.helldiversplanetstatus
 
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class HelldiverAdapter(private val planetList: List<JSONObject>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-     val planetInfo: JSONObject = planetList[position]
+        val planetInfo: JSONObject = planetList[position]
         if(!planetInfo.isNull("biome")) {
                     holder.planetDiscription.setText(planetInfo.getJSONObject("biome").getString("description"))
                 } else {
@@ -44,12 +45,16 @@ class HelldiverAdapter(private val planetList: List<JSONObject>): RecyclerView.A
         val planet: Int
                 if(faction.equals("Terminids")) {
                     planet = R.drawable.terminids
+                    holder.nameOfPlanet.setTextAppearance(R.style.Terminids)
                 } else if(faction.equals("Illuminate")) {
                     planet = R.drawable.illuminates
+                    holder.nameOfPlanet.setTextAppearance(R.style.Illuminate)
                 } else if(faction.equals("Automatons")) {
                     planet = R.drawable.automatons
+                    holder.nameOfPlanet.setTextAppearance(R.style.Automatons)
                 } else {
                     planet = R.drawable.superearth
+                    holder.nameOfPlanet.setTextAppearance(R.style.SuperEarth)
                 }
         Glide.with(holder.itemView)
             .load(planet)
